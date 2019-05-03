@@ -55,9 +55,11 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
   - Huion 420
   - Huion H420
   - Huion H430P
+  - Huion H610
   - Huion H640P
   - Huion osu!tablet
   - Gaomon S56K
+  - Gaomon S620
   - VEIKK S640
   
 ### Configured, but not properly tested:
@@ -105,6 +107,10 @@ If you want to compile the code and don't want to install anything from the Tabl
 #
 
 ## Changelog
+
+>**v0.2.4:**
+> - Gaomon S620 configuration by [frodriguez96](https://github.com/frodriguez96).
+> - Huion H610 configuration by [InfinityGhost](https://github.com/InfinityGhost).
 
 >**v0.2.3:**
 > - Fixed "TabletDriverService.exe has stopped working" error when a tablet is not connected.
