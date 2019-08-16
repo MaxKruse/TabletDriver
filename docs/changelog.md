@@ -1,4 +1,4 @@
-## Changelog
+# Changelog
 
 >**v0.2.4:**
 > - Gaomon S620 configuration by [frodriguez96](https://github.com/frodriguez96).
