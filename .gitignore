@@ -7,3 +7,5 @@
 /TabletDriverService/Debug/
 /TabletDriverService/startuplog.txt
 TabletDriverService/config/usersettings.cfg
+/VMulti Installer/bin/
+/VMulti Installer/obj/
