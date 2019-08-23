@@ -36,6 +36,7 @@ namespace VMulti_Installer
             //TemporaryFiles.Add(archive);
 
             archive.Extract(TemporaryDirectory);
+            TemporaryFiles.AddRange(TemporaryDirectory.GetFiles());
 
             return TemporaryDirectory;
         }
