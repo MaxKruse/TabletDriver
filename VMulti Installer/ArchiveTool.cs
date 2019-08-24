@@ -11,17 +11,14 @@ namespace VMulti_Installer
 {
     internal class ArchiveTool : IDisposable
     {
-        public ArchiveTool()
-        {
-
-        }
+        public ArchiveTool() { }
 
         private DirectoryInfo CurrentDir => new DirectoryInfo(Directory.GetCurrentDirectory());
         private List<FileInfo> TemporaryFiles { set; get; } = new List<FileInfo>();
         private DirectoryInfo TemporaryDirectory { set; get; }
 
         /// <summary>
-        /// Extracts the archive to a temporary location.
+        /// Extracts the archive resource to a temporary location.
         /// </summary>
         /// <param name="archiveName"></param>
         /// <returns>Directory in which the files are extracted to</returns>
@@ -30,9 +27,9 @@ namespace VMulti_Installer
             if (TemporaryDirectory == null)
                 TemporaryDirectory = CurrentDir.CreateSubdirectory("temp");
 
-            var archiveData = GetArchiveResource(archiveName);
+            var archiveStream = GetArchiveResourceStream(archiveName);
             var archive = new FileInfo(TemporaryDirectory + "arch.zip");
-            WriteByteStreamToFile(archiveData, archive);
+            WriteByteStreamToFile(archiveStream, archive);
             //TemporaryFiles.Add(archive);
 
             archive.Extract(TemporaryDirectory);
@@ -41,10 +38,8 @@ namespace VMulti_Installer
             return TemporaryDirectory;
         }
 
-        private Stream GetArchiveResource(string archiveName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream("VMulti_Installer.Archives." + archiveName);
-        }
+        private Stream GetArchiveResourceStream(string archiveName) => 
+            Assembly.GetExecutingAssembly().GetManifestResourceStream("VMulti_Installer.Archives." + archiveName);
 
         private void WriteByteStreamToFile(Stream stream, FileInfo file)
         {
@@ -57,6 +52,9 @@ namespace VMulti_Installer
             }
         }
 
+        /// <summary>
+        /// Removes all unmanaged files
+        /// </summary>
         public void Dispose()
         {
             foreach (var file in TemporaryFiles)
