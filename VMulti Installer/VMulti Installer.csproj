@@ -43,10 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveTool.cs" />
-    <Compile Include="DriverTool.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Installer.cs" />
-    <Compile Include="Native.cs" />
     <Compile Include="Version.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
