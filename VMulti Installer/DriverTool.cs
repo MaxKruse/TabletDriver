@@ -4,14 +4,14 @@ using System.Text;
 
 namespace VMulti_Installer
 {
-    internal class DriverTool
+    internal static class DriverTool
     {
         /// <summary>
         /// Checks if a device is detected.
         /// </summary>
         /// <param name="deviceName">The device's name</param>
         /// <returns></returns>
-        private bool DeviceConnected(string deviceName)
+        public static bool DeviceConnected(string deviceName)
         {
             IList<string> allDevices = GetAll();
             return allDevices.Contains(deviceName);
@@ -29,7 +29,7 @@ namespace VMulti_Installer
         //          manager does.  Currently it uses the actual "system" names for the
         //          hardware.  It is also possible to use hardware IDs.  See the docs
         //          for SetupDiGetDeviceRegistryProperty in the MS SDK for more details.
-        internal string[] GetAll()
+        public static string[] GetAll()
         {
             List<string> HWList = new List<string>();
             try
