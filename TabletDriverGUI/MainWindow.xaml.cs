@@ -532,11 +532,28 @@ namespace TabletDriverGUI
 
         #endregion
 
+        #region VMulti Installer
+
+        private void VMultiInstallerOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var installer = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = @"bin\VMulti Installer GUI.exe",
+                    UseShellExecute = true,
+                    Verb = "runas",
+                }
+            };
+            installer.Start();
+            installer.Exited += (s, a) => installer.Dispose();
+        }
+
+        #endregion
 
         private void MouseTest(object sender, MouseButtonEventArgs e)
         {
             SetStatus("Event: " + e.RoutedEvent.ToString() + ", Mouse at " + ((UIElement)sender).ToString() + "! " + e.ChangedButton.ToString() + " " + e.ButtonState.ToString());
         }
-
     }
 }

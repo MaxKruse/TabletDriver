@@ -17,22 +17,6 @@ namespace VMulti_Installer_GUI
         {
             MainWindow window = new MainWindow();
             window.Show();
-            string s = null;
-            if (e.Args.Length > 0)
-                s = e.Args[0];
-            switch (s.TrimStart('-'))
-            {
-                case "i":
-                case "install":
-                    window.InstallVMulti(sender, new RoutedEventArgs());
-                    break;
-                case "u":
-                case "uninstall":
-                    window.UninstallVMulti(sender, new RoutedEventArgs());
-                    break;
-                default:
-                    break;
-            }
         }
     }
 }
