@@ -9,4 +9,6 @@
 TabletDriverService/config/usersettings.cfg
 /VMulti Installer/bin/
 /VMulti Installer/obj/
+/VMulti Installer GUI/bin/
+/VMulti Installer GUI/obj/
 *.user

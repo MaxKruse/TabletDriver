@@ -131,9 +131,8 @@ namespace VMulti_Installer
 
         protected void Log(string text)
         {
-            var line = $"{DateTime.Now}\t{text}";
-            Logs.Add(line);
-            LogUpdated?.Invoke(this, line);
+            Logs.Add(text);
+            LogUpdated?.Invoke(this, text);
         }
 
         protected void DataReceived(object sender, DataReceivedEventArgs e) => Log(e.Data);
