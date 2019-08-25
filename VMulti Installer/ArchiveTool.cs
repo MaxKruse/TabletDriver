@@ -28,7 +28,7 @@ namespace VMulti_Installer
                 TemporaryDirectory = CurrentDir.CreateSubdirectory("temp");
 
             var archiveStream = GetArchiveResourceStream(archiveName);
-            var archive = new FileInfo(Path.Combine(TemporaryDirectory.FullName,"arch.zip"));
+            var archive = new FileInfo(Path.Combine(TemporaryDirectory.FullName, archiveName));
             archiveStream.WriteBytesToFile(archive);
             TemporaryFiles.Add(archive);
 
