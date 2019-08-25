@@ -32,7 +32,7 @@ namespace VMulti_Installer_GUI
 
         public Version Version => Environment.Is64BitOperatingSystem ? Version.x64 : Version.x86;
 
-        private void InstallVMulti(object sender, RoutedEventArgs e)
+        public void InstallVMulti(object sender, RoutedEventArgs e)
         {
             var installer = new Installer();
             installer.LogUpdated += LogEvent;
@@ -40,7 +40,7 @@ namespace VMulti_Installer_GUI
             RunBackground(() => installer.Install(Version));
         }
 
-        private void UninstallVMulti(object sender, RoutedEventArgs e)
+        public void UninstallVMulti(object sender, RoutedEventArgs e)
         {
             var installer = new Installer();
             installer.LogUpdated += LogEvent;
