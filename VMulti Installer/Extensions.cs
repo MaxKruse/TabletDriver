@@ -21,7 +21,7 @@ namespace VMulti_Installer
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     WorkingDirectory = file.DirectoryName,
-                    UseShellExecute = true,
+                    UseShellExecute = false,
                 },
                 
             };
