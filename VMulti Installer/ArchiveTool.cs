@@ -28,9 +28,9 @@ namespace VMulti_Installer
                 TemporaryDirectory = CurrentDir.CreateSubdirectory("temp");
 
             var archiveStream = GetArchiveResourceStream(archiveName);
-            var archive = new FileInfo(TemporaryDirectory + "arch.zip");
-            WriteByteStreamToFile(archiveStream, archive);
-            //TemporaryFiles.Add(archive);
+            var archive = new FileInfo(Path.Combine(TemporaryDirectory.FullName,"arch.zip"));
+            archiveStream.WriteBytesToFile(archive);
+            TemporaryFiles.Add(archive);
 
             archive.Extract(TemporaryDirectory);
             TemporaryFiles.AddRange(TemporaryDirectory.GetFiles());
@@ -41,17 +41,6 @@ namespace VMulti_Installer
         private Stream GetArchiveResourceStream(string archiveName) => 
             Assembly.GetExecutingAssembly().GetManifestResourceStream("VMulti_Installer.Archives." + archiveName);
 
-        private void WriteByteStreamToFile(Stream stream, FileInfo file)
-        {
-            if (file.Exists)
-                file.Delete();
-            using (var outputStream = file.Create())
-            {
-                for (int i = 0; i < stream.Length; i++)
-                    outputStream.WriteByte((byte)stream.ReadByte());
-            }
-        }
-
         /// <summary>
         /// Removes all unmanaged files
         /// </summary>
@@ -61,6 +50,9 @@ namespace VMulti_Installer
                 if (file.Exists)
                     file.Delete();
             TemporaryDirectory.Delete();
+
+            TemporaryDirectory = null;
+            TemporaryFiles.Clear();
         }
     }
 }

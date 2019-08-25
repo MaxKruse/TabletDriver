@@ -9,7 +9,7 @@ namespace VMulti_Installer
         public static void Extract(this FileInfo file, DirectoryInfo directory) => 
             ZipFile.ExtractToDirectory(file.FullName, directory.FullName);
 
-        public static Process CreateProcess(this FileInfo file, string args, bool admin = false)
+        public static Process CreateProcess(this FileInfo file, string args, bool admin)
         {
             return new Process
             {
@@ -20,11 +20,22 @@ namespace VMulti_Installer
                     Verb = admin ? "runas" : null,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
+                    CreateNoWindow = true,
                     WorkingDirectory = file.DirectoryName,
                     UseShellExecute = false,
                 },
-                
             };
+        }
+
+        public static void WriteBytesToFile(this Stream stream, FileInfo file)
+        {
+            if (file.Exists)
+                file.Delete();
+            using (var outputStream = file.Create())
+            {
+                for (int i = 0; i < stream.Length; i++)
+                    outputStream.WriteByte((byte)stream.ReadByte());
+            }
         }
     }
 }

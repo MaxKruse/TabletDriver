@@ -131,7 +131,7 @@ namespace VMulti_Installer
 
         protected void Log(string text)
         {
-            var line = $"{DateTime.Now}\t|{text}";
+            var line = $"{DateTime.Now}\t{text}";
             Logs.Add(line);
             LogUpdated?.Invoke(this, line);
         }
