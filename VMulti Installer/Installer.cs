@@ -49,9 +49,11 @@ namespace VMulti_Installer
             }
         }
 
-        public bool Detect(Version ver)
+        public static bool Detect()
         {
-            throw new NotImplementedException();
+            var drivers = new DirectoryInfo(Path.Combine(Environment.SystemDirectory, @"DriverStore\FileRepository\"));
+            var dirs = drivers.GetDirectories();
+            return dirs.Any(f => f.Name.Contains("vmulti.inf"));
         }
 
         #endregion
