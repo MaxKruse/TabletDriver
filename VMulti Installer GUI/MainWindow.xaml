@@ -55,6 +55,7 @@
             VerticalAlignment="Center">
             <Button Content="Install" Click="InstallVMulti"/>
             <Button Content="Uninstall" Click="UninstallVMulti"/>
+            <Button Content="Check if installed" Click="CheckVMulti"/>
         </StackPanel>
         
         

@@ -36,30 +36,28 @@ namespace VMulti_Installer_GUI
         {
             var installer = new Installer();
             installer.LogUpdated += LogEvent;
-            var thread = new Thread(() => installer.Install(Version))
-            {
-                Name = "VMulti_Install",
-                IsBackground = true,
-            };
-            thread.Start();
-            while (thread.ThreadState == ThreadState.Running)
-                ButtonPanel.IsEnabled = false;
-            ButtonPanel.IsEnabled = true;
+
+            RunBackground(() => installer.Install(Version));
         }
 
         private void UninstallVMulti(object sender, RoutedEventArgs e)
         {
             var installer = new Installer();
             installer.LogUpdated += LogEvent;
-            var thread = new Thread(() => installer.Uninstall(Version))
+
+            RunBackground(() => installer.Uninstall(Version));
+        }
+
+        private void RunBackground(Action method)
+        {
+            using (var worker = new BackgroundWorker())
             {
-                Name = "VMulti_Uninstall",
-                IsBackground = true,
-            };
-            thread.Start();
-            while (thread.ThreadState == ThreadState.Running)
+                worker.DoWork += (s, a) => method();
+                worker.RunWorkerCompleted += (s, a) => ButtonPanel.IsEnabled = true;
+
                 ButtonPanel.IsEnabled = false;
-            ButtonPanel.IsEnabled = true;
+                worker.RunWorkerAsync();
+            }
         }
 
         private void LogEvent(object sender, string e) => Dispatcher.Invoke(() => Log(e));
@@ -69,9 +67,12 @@ namespace VMulti_Installer_GUI
             if (!string.IsNullOrWhiteSpace(OutputTextbox.Text))
                 OutputTextbox.Text += Environment.NewLine;
             OutputTextbox.Text += line;
+            OutputTextbox.ScrollToEnd();
         }
 
         private void CopyAllConsole(object sender, RoutedEventArgs e) => Clipboard.SetText(OutputTextbox.Text);
         private void ClearAllConsole(object sender, RoutedEventArgs e) => OutputTextbox.Text = string.Empty;
+
+        private void CheckVMulti(object sender, RoutedEventArgs e) => Log($"VMulti is {(Installer.Detect() ? null : "not ")}installed.");
     }
 }
