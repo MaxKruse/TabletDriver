@@ -110,11 +110,13 @@ If you want to compile the code and don't want to install anything from the Tabl
 
 >**v0.3.0**
 >- VMulti installer now has a GUI
->  - Open from main window or at `\bin\VMulti Installer GUI.exe`
->  - One click install & uninstall
->  - Can detect if it is already installed
->- Display area editor will adjust to display changes
+>   - Open from main window or at `\bin\VMulti Installer GUI.exe`
+>   - One click install & uninstall
+>   - Can detect if it is already installed
 >- XP-Pen Deco 02 configuration ([mat32323](https://github.com/mat32323))
 >- Huion HS64 configuration ([InfinityGhost](https://github.com/InfinityGhost))
+>- Display area editor will adjust to display changes
+>- Driver will restart on system resume
+>   - Ex: Sleep, hibernation, unlocking
 
 [**View all changelogs**](docs/changelog.md)
