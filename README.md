@@ -58,6 +58,7 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
   - Huion H430P
   - Huion H610
   - Huion H640P
+  - Huion HS64
   - Huion osu!tablet
   - Gaomon S56K
   - Gaomon S620
