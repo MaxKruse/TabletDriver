@@ -80,10 +80,10 @@
     <Compile Include="MainWindow.Areas.cs" />
     <Compile Include="MultimediaTimer.cs" />
     <Compile Include="NamedPipeClient.cs" />
-    <Compile Include="WindowTabletViewSettings.xaml.cs">
+    <Compile Include="Windows\WindowTabletViewSettings.xaml.cs">
       <DependentUpon>WindowTabletViewSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowButtonMapping.xaml.cs">
+    <Compile Include="Windows\WindowButtonMapping.xaml.cs">
       <DependentUpon>WindowButtonMapping.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.Driver.cs" />
@@ -94,23 +94,23 @@
     <Compile Include="TabletDriver.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="VersionHelper.cs" />
-    <Compile Include="WindowMessageBox.xaml.cs">
+    <Compile Include="Windows\WindowMessageBox.xaml.cs">
       <DependentUpon>WindowMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowTabletView.xaml.cs">
+    <Compile Include="Windows\WindowTabletView.xaml.cs">
       <DependentUpon>WindowTabletView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowWacomArea.xaml.cs">
+    <Compile Include="Windows\WindowWacomArea.xaml.cs">
       <DependentUpon>WindowWacomArea.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowAreaEditor.xaml.cs">
+    <Compile Include="Windows\WindowAreaEditor.xaml.cs">
       <DependentUpon>WindowAreaEditor.xaml</DependentUpon>
     </Compile>
-    <Page Include="WindowTabletViewSettings.xaml">
+    <Page Include="Windows\WindowTabletViewSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowButtonMapping.xaml">
+    <Page Include="Windows\WindowButtonMapping.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,19 +128,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WindowMessageBox.xaml">
+    <Page Include="Windows\WindowMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowTabletView.xaml">
+    <Page Include="Windows\WindowTabletView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowWacomArea.xaml">
+    <Page Include="Windows\WindowWacomArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowAreaEditor.xaml">
+    <Page Include="Windows\WindowAreaEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +188,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
