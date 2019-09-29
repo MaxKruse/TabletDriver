@@ -1,6 +1,13 @@
+# IDE
 /.vs
+/.vscode
+
+# User Specific Objects
 /TabletDriverService/startuplog.txt
 TabletDriverService/config/usersettings.cfg
 *.user
+
+# Build objects
 **/bin
 **/obj
+/Build
