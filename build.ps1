@@ -15,7 +15,6 @@ function BuildTabletDriver {
         Write-Host "Current directory detected as $($cd)" -ForegroundColor Cyan
 
         [string] $target = $(if ($rebuild) {'Rebuild'} else {'Build'})
-        [string] $configuration = $(if ($release) {'Release'} else {'Debug'})
         Write-Host "$($target)ing $($configuration) for '$($cd)'..." -ForegroundColor Green
         MSBuild $sln $target $configuration
 
