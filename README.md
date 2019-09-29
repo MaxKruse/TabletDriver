@@ -94,18 +94,20 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
 
 #
 
-## Build Requirements
+## Building TabletDriver
+The easiest way to build TabletDriver is to use the included powershell script [build.ps1](build.ps1)
 
+### Requirements:
 If you want to compile the code and don't want to install anything from the TabletDriver binary package, you will need extract the missing drivers from these installation packages:
-
-**7-zip x64:**
-- https://www.7-zip.org/download.html
 
 **VMulti driver:**
 - https://www.xp-pen.com/upload/download/20181019/osuWin(20181019).zip
 
 **Huion WinUSB driver:**
 - https://www.huiontablet.com/drivers/WinDriver/HuionTablet_WinDriver_v14.7.60.zip
+
+**7-zip x64 (optional):**
+- https://www.7-zip.org/download.html
 
 # Changelog
 
