@@ -10,17 +10,9 @@ function BuildTabletDriver {
         [string] $cdRaw = Get-Location
         [string] $cd = ($cdRaw).Replace('Microsoft.PowerShell.Core\FileSystem::', '')
         [string] $sln = Join-Path -Path $cd -ChildPath 'TabletDriver.sln'
-        [string] $build = Join-Path -Path $cd -ChildPath 'Build'
         [string] $configuration = $(if ($release) {'Release'} else {'Debug'})
 
-        Write-Host "Current directory detected as $($cd)" -ForegroundColor Yellow
-
-        if ($release) {
-            $build += '\Release'
-        }
-        else {
-            $build += '\Debug'
-        }
+        Write-Host "Current directory detected as $($cd)" -ForegroundColor Cyan
 
         [string] $target = $(if ($rebuild) {'Rebuild'} else {'Build'})
         [string] $configuration = $(if ($release) {'Release'} else {'Debug'})
@@ -28,6 +20,9 @@ function BuildTabletDriver {
         MSBuild $sln $target $configuration
 
         # File system operations
+        [string] $build = Join-Path -Path $cd -ChildPath 'Build'
+        $build = Join-Path -Path $build -ChildPath $configuration
+
         XCopy "$($cd)\TabletDriverGUI\bin\$($configuration)\*" "$($build)\*"
         XCopy "$($cd)\TabletDriverService\bin\$($configuration)\*" "$($build)\bin\*"
         XCopy "$($cd)\VMulti Installer GUI\bin\$($configuration)\*" "$($build)\bin\*"
@@ -48,7 +43,21 @@ function MSBuild {
         [string] $configuration
     )
     process {
-        $msb = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe'
+        [string] $progFiles = ${env:ProgramFiles(x86)}
+        [string] $vsBase = Join-Path -Path $progFiles -ChildPath '\Microsoft Visual Studio'
+
+        if (Test-Path $(Join-Path -Path $vsBase -ChildPath '2019')) {
+            $ver = '2019'
+        }
+        elseif (Test-Path $(Join-Path -Path $vsBase -ChildPath '2017')) {
+            $ver = '2017'
+        }
+        else {
+            Write-Host 'Failed to detect Visual Studio install. Defaulting to newest (VS2019), build will likely fail.' -ForegroundColor Red
+            $ver = '2019'
+        }
+        Write-Host "MSBuild (Visual Studio $($ver))" -ForegroundColor Cyan
+        $msb = "$($vsBase)\$($ver)\Community\MSBuild\Current\Bin\MSBuild.exe"
         & $msb /t:$target /p:Configuration=$configuration /m
     }
 }
