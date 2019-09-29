@@ -13,15 +13,20 @@ function BuildTabletDriver {
         [string] $configuration = $(if ($release) {'Release'} else {'Debug'})
 
         Write-Host "Current directory detected as $($cd)" -ForegroundColor Cyan
+        
+        [string] $build = Join-Path -Path $cd -ChildPath 'Build'
+        $build = Join-Path -Path $build -ChildPath $configuration
+        
+        if (Test-Path $build) {
+            Write-Host "Cleaning up directory '$($build)'..." -ForegroundColor Yellow
+            Wipe $build
+        }
 
         [string] $target = $(if ($rebuild) {'Rebuild'} else {'Build'})
         Write-Host "$($target)ing $($configuration) for '$($cd)'..." -ForegroundColor Green
         MSBuild $sln $target $configuration
 
         # File system operations
-        [string] $build = Join-Path -Path $cd -ChildPath 'Build'
-        $build = Join-Path -Path $build -ChildPath $configuration
-
         XCopy "$($cd)\TabletDriverGUI\bin\$($configuration)\*" "$($build)\*"
         XCopy "$($cd)\TabletDriverService\bin\$($configuration)\*" "$($build)\bin\*"
         XCopy "$($cd)\VMulti Installer GUI\bin\$($configuration)\*" "$($build)\bin\*"
@@ -87,6 +92,16 @@ function 7Zip {
         else {
             Write-Host '7-Zip is not installed, unable to compress build files.'
         }
+    }
+}
+function Wipe {
+    param (
+        [parameter(Mandatory=$true)]
+        [string] $directory
+    )
+    process {
+        Get-ChildItem -Path $directory -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+        Remove-Item $directory -Force -ErrorAction SilentlyContinue
     }
 }
 
