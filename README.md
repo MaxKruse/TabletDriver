@@ -12,7 +12,7 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
 
 ## Download
 
-### https://github.com/InfinityGhost/TabletDriver/releases/download/v0.3.0-pre/TabletDriver.0.3.0pre.zip
+### https://github.com/InfinityGhost/TabletDriver/releases/download/v0.3.0/TabletDriver.0.3.0.zip
 
 #
 
