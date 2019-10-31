@@ -82,7 +82,7 @@ bool OutputVMultiDigitizerRelative::Set(TabletState *tabletState)
 	// Check if mouse has moved since last update
 	// To prevent pen jumping when being used, only do this 
 	// if tablet pen isn't moving and no pressure being applied
-	if (tabletState->inputVelocity == 0 & 
+	if (tabletState->inputVelocity == 0 && 
 		tabletState->inputPressure == 0) {
 		// Get current position of mouse cursor
 		POINT cursorPosPoint;
