@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -22,7 +24,7 @@ namespace TabletDriverGUI
     {
 
         // Version
-        public string Version = "0.2.4";
+        public string Version = "0.3.0 InfinityGhost";
 
         // Console stuff
         private List<string> commandHistory;
@@ -171,6 +173,9 @@ namespace TabletDriverGUI
             Loaded += MainWindow_Loaded;
             SizeChanged += MainWindow_SizeChanged;
 
+            // Static events (must be removed on close)
+            SystemEvents.DisplaySettingsChanged += DisplaySettingsChanged;
+            SystemEvents.SessionSwitch += SessionSwitched;
         }
 
 
@@ -189,6 +194,10 @@ namespace TabletDriverGUI
             // Write configuration to XML file
             try { config.Write(configFilename); }
             catch (Exception) { }
+
+            // Remove static event to avoid memory leak
+            SystemEvents.DisplaySettingsChanged -= DisplaySettingsChanged;
+            SystemEvents.SessionSwitch -= SessionSwitched;
 
             // Stop driver
             StopDriver();
@@ -512,14 +521,49 @@ namespace TabletDriverGUI
             return IntPtr.Zero;
         }
 
+        //
+        // Update on display settings change
+        //
+        private void DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            // Fix canvases
+            CreateCanvasElements();
+            UpdateCanvasElements();
+        }
+
+        //
+        // Update on session switched
+        //
+        private void SessionSwitched(object sender, SessionSwitchEventArgs e)
+        {
+            // Force driver restart on session change / wakeup event
+            RestartDriverClick(sender, null);
+        }
 
         #endregion
 
+        #region VMulti Installer
+
+        private void VMultiInstallerOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var installer = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = @"bin\VMulti Installer GUI.exe",
+                    UseShellExecute = true,
+                    Verb = "runas",
+                }
+            };
+            installer.Start();
+            installer.Exited += (s, a) => installer.Dispose();
+        }
+
+        #endregion
 
         private void MouseTest(object sender, MouseButtonEventArgs e)
         {
             SetStatus("Event: " + e.RoutedEvent.ToString() + ", Mouse at " + ((UIElement)sender).ToString() + "! " + e.ChangedButton.ToString() + " " + e.ButtonState.ToString());
         }
-
     }
 }
