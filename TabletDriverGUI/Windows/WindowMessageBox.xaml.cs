@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TabletDriverGUI
+namespace TabletDriverGUI.Windows
 {
     /// <summary>
     /// Interaction logic for WindowMessageBox.xaml

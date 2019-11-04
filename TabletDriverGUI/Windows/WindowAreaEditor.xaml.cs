@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace TabletDriverGUI
+namespace TabletDriverGUI.Windows
 {
     /// <summary>
     /// Interaction logic for WindowAreaEditor.xaml

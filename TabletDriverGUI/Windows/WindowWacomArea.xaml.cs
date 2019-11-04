@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 
-namespace TabletDriverGUI
+namespace TabletDriverGUI.Windows
 {
     /// <summary>
     /// Interaction logic for WacomArea.xaml

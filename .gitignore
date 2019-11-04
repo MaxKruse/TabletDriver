@@ -1,14 +1,13 @@
+# IDE
 /.vs
-/Release
-/Debug
-/TabletDriverGUI/bin/
-/TabletDriverGUI/obj/
-/TabletDriverService/Release/
-/TabletDriverService/Debug/
+/.vscode
+
+# User Specific Objects
 /TabletDriverService/startuplog.txt
 TabletDriverService/config/usersettings.cfg
-/VMulti Installer/bin/
-/VMulti Installer/obj/
-/VMulti Installer GUI/bin/
-/VMulti Installer GUI/obj/
 *.user
+
+# Build objects
+**/bin
+**/obj
+/Build

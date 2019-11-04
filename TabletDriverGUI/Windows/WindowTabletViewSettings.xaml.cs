@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace TabletDriverGUI
+namespace TabletDriverGUI.Windows
 {
     /// <summary>
     /// Interaction logic for TabletViewSettings.xaml

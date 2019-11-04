@@ -18,7 +18,6 @@ namespace TabletDriverGUI
             {
                 _width = value;
                 UpdateCorners();
-
             }
         }
         public double Height
@@ -31,7 +30,6 @@ namespace TabletDriverGUI
             {
                 _height = value;
                 UpdateCorners();
-
             }
         }
         public double X;
@@ -81,7 +79,6 @@ namespace TabletDriverGUI
             X = 0;
             Y = 0;
             IsEnabled = false;
-
         }
         public Area(double width, double height, double x, double y) : this()
         {

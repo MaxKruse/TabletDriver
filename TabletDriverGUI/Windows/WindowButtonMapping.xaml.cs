@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace TabletDriverGUI
+namespace TabletDriverGUI.Windows
 {
     /// <summary>
     /// Interaction logic for ButtonMapping.xaml

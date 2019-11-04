@@ -1,5 +1,8 @@
 # Changelog
 
+>**v0.3.1**
+>- Fixed tablet detection
+
 >**v0.3.0**
 >- VMulti installer now has a GUI
 >   - Open from main window or at `\bin\VMulti Installer GUI.exe`

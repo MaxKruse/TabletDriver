@@ -94,12 +94,11 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
 
 #
 
-## Build Requirements
+## Building TabletDriver
+The easiest way to build TabletDriver is to use the included powershell script [build.ps1](build.ps1)
 
+### Requirements:
 If you want to compile the code and don't want to install anything from the TabletDriver binary package, you will need extract the missing drivers from these installation packages:
-
-**7-zip x64:**
-- https://www.7-zip.org/download.html
 
 **VMulti driver:**
 - https://www.xp-pen.com/upload/download/20181019/osuWin(20181019).zip
@@ -107,17 +106,12 @@ If you want to compile the code and don't want to install anything from the Tabl
 **Huion WinUSB driver:**
 - https://www.huiontablet.com/drivers/WinDriver/HuionTablet_WinDriver_v14.7.60.zip
 
+**7-zip x64 (optional):**
+- https://www.7-zip.org/download.html
+
 # Changelog
 
->**v0.3.0**
->- VMulti installer now has a GUI
->   - Open from main window or at `\bin\VMulti Installer GUI.exe`
->   - One click install & uninstall
->   - Can detect if it is already installed
->- XP-Pen Deco 02 configuration ([mat32323](https://github.com/mat32323))
->- Huion HS64 configuration ([InfinityGhost](https://github.com/InfinityGhost))
->- Display area editor will adjust to display changes
->- Driver will restart on system resume
->   - Ex: Sleep, hibernation, unlocking
+>**v0.3.1**
+>- Fixed tablet detection
 
 [**View all changelogs**](docs/changelog.md)
