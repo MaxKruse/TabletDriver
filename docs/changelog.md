@@ -1,7 +1,7 @@
 # Changelog
 
 >**v0.3.1**
->- Fixed tablet detection
+>- XP-Pen G430S_B configuration by [Vestuvian (on reddit)](reddit.com/u/vestuvian) and [xCuri0](https://github.com/xCuri0)
 
 >**v0.3.0**
 >- VMulti installer now has a GUI
