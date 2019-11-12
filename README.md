@@ -47,6 +47,7 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
   - Wacom PTH-850
   - XP-Pen G430 (New 2017+ "Model B". Old G430 is not supported)
   - XP-Pen G430S
+  - XP-Pen G430S_B
   - XP-Pen G540 Pro (G540 is not supported)
   - XP-Pen G640
   - XP-Pen G640S
@@ -112,6 +113,6 @@ If you want to compile the code and don't want to install anything from the Tabl
 # Changelog
 
 >**v0.3.1**
->- Fixed tablet detection
+>- XP-Pen G430S_B configuration by [Vestuvian (on reddit)](reddit.com/u/vestuvian) and [xCuri0](https://github.com/xCuri0)
 
 [**View all changelogs**](docs/changelog.md)
