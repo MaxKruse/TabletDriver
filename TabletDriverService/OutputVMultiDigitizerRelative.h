@@ -26,6 +26,9 @@ public:
 
 	Vector2D absolutePosition;
 
+	// Last position of mouse cursor
+	Vector2D lastCursorPosition;
+
 	double maxPressure;
 
 	OutputVMultiDigitizerRelative();

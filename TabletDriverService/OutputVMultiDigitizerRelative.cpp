@@ -79,6 +79,31 @@ bool OutputVMultiDigitizerRelative::Set(TabletState *tabletState)
 	Vector2D delta;
 	outputManager->GetRelativePositionDelta(tabletState, &delta);
 
+	// Check if mouse has moved since last update
+	// To prevent pen jumping when being used, only do this 
+	// if tablet pen isn't moving and no pressure being applied
+	if (tabletState->inputVelocity == 0 && 
+		tabletState->inputPressure == 0) {
+		// Get current position of mouse cursor
+		POINT cursorPosPoint;
+		GetCursorPos(&cursorPosPoint);
+
+		// Calculate distance mouse cursor has moved
+		double cursorX = cursorPosPoint.x;
+		double cursorY = cursorPosPoint.y;
+		double dx = lastCursorPosition.x - cursorX;
+		double dy = lastCursorPosition.y - cursorY;
+		double distance = sqrt(dx * dx + dy * dy);
+			
+		// If mouse cursor has moved significantly, 
+		// reset saved cursor position and tablet position
+		// to current cursor position
+		if (distance > settings->relativeResetDistance) {
+			lastCursorPosition.Set(cursorX, cursorY);
+			absolutePosition.Set(cursorX, cursorY);
+		}
+	}
+
 	// Move absolute position
 	absolutePosition.Add(delta);
 
