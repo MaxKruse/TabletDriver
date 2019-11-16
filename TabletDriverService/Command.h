@@ -2,6 +2,7 @@
 
 #include "CommandLine.h"
 #include <string>
+#include <functional>
 
 
 class Command {

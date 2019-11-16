@@ -1,0 +1,26 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup MSBuild
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build Release
+      run: msbuild /t:Build /p:Configuration=Release /m
+    - name: Copy all build files into build directory
+      run: |
+        Copy-Item -Path "./TabletDriverGUI/bin/Release/" -Destination "./Build/" -Recurse
+        Copy-Item -Path "./TabletDriverService/bin/Release/" -Destination "./Build/bin/" -Recurse
+        Copy-Item -Path "./TabletDriverService/config/" -Destination "./Build/config/" -Recurse
+        Copy-Item -Path "./TabletDriverService/tools/" -Destination "./Build/tools/" -Recurse
+        Copy-Item -Path "./VMulti Installer GUI/bin/Release/*" -Destination "./Build/bin/" -Recurse
+    - name: Upload Windows artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: TabletDriver
+        path: Build
