@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/InfinityGhost/TabletDriver/workflows/Build/badge.svg)](https://github.com/InfinityGhost/TabletDriver/actions)
+
 # TabletDriver
 
 This is a low latency graphics tablet driver that is meant to be used with rhythm game [osu!](https://osu.ppy.sh/home)
