@@ -115,6 +115,7 @@ If you want to compile the code and don't want to install anything from the Tabl
 # Changelog
 
 >**v0.3.1**
+>- Fixed Gaomon S620 detection
 >- XP-Pen G430S_B configuration by [Vestuvian (on reddit)](reddit.com/u/vestuvian) and [xCuri0](https://github.com/xCuri0)
 >- XP-Pen Star 03v2 configuration by [SBAPKat](https://github.com/SBAPKat)
 
