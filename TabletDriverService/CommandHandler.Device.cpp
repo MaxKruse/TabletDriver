@@ -403,7 +403,7 @@ void CommandHandler::CreateDeviceCommands() {
 
 	}));
 	
-	AddAlias("StringContains");
+	AddAlias("StringContains", "DeviceStringContains");
 	AddHelp("DeviceStringContains", "Usage:");
 	AddHelp("DeviceStringContains", "  DeviceStringContains <string id> \"<match>\"");
 	AddHelp("DeviceStringContains", "  DeviceStringContains Manufacturer \"<match>\"");
@@ -476,5 +476,5 @@ void CommandHandler::CreateDeviceCommands() {
 			return false;
 		}
 		return true;
-	}))
+	}));
 }
