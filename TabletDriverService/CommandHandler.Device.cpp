@@ -402,5 +402,79 @@ void CommandHandler::CreateDeviceCommands() {
 		return true;
 
 	}));
+	
+	AddAlias("StringContains", "DeviceStringContains");
+	AddHelp("DeviceStringContains", "Usage:");
+	AddHelp("DeviceStringContains", "  DeviceStringContains <string id> \"<match>\"");
+	AddHelp("DeviceStringContains", "  DeviceStringContains Manufacturer \"<match>\"");
+	AddHelp("DeviceStringContains", "  DeviceStringContains Product \"<match>\"");
+	AddHelp("DeviceStringContains", "  DeviceStringContains SerialNumber \"<match>\"");
+	AddCommand(new Command("DeviceStringContains", [&](CommandLine *cmd) {
+		if (cmd->valueCount <= 1) {
+			ExecuteCommand("Help", "DeviceStringContains");
+			return false;
+		}
+		if (tablet == NULL) return false;
 
+		int stringId = cmd->GetInt(0, 0);
+		std::string stringName = cmd->GetStringLower(0, "");
+		std::string matchString = cmd->GetString(1, "");
+		std::string deviceString = "";
+
+		// Manufacturer
+		if (stringName.compare(0, 3, "man") == 0) {
+			stringName = "Manufacturer";
+			deviceString = tablet->GetDeviceManufacturerName();
+		}
+
+		// Product name
+		else if (stringName.compare(0, 3, "pro") == 0) {
+			stringName = "Product";
+			deviceString = tablet->GetDeviceProductName();
+		}
+
+		// Serial number
+		else if (stringName.compare(0, 3, "ser") == 0) {
+			stringName = "SerialNumber";
+			deviceString = tablet->GetDeviceSerialNumber();
+		}
+
+		// Request device string 
+		else {
+			stringName = std::to_string(stringId);
+			if (stringId == 0) {
+				LOG_ERROR("Invalid string id!\n");
+				return false;
+			}
+			try {
+				deviceString = tablet->GetDeviceString(stringId);
+			}
+			catch (std::exception&e) {
+				LOG_ERROR("%s\n", e.what());
+			}
+		}
+
+		// Does the string contain the matching term?
+		if (deviceString.find(matchString) != std::string::npos) {
+			LOG_INFO("Device string (%s) '%s' contains '%s'\n",
+				stringName.c_str(),
+				deviceString.c_str(),
+				matchString.c_str()
+			);
+			return true;
+		}
+
+		// Does not contain the matching term
+		else {
+			LOG_INFO("Device string (%s) '%s' does not contain '%s'. Tablet invalid!\n",
+				stringName.c_str(),
+				deviceString.c_str(),
+				matchString.c_str()
+			);
+			delete tablet;
+			tablet = NULL;
+			return false;
+		}
+		return true;
+	}));
 }
