@@ -1403,27 +1403,6 @@ namespace TabletDriverGUI
 
 
             //
-            // Update desktop image
-            //
-            else if (sender == mainMenuUpdateDesktopImage)
-            {
-                DispatcherTimer timer = new DispatcherTimer
-                {
-                    Interval = new TimeSpan(0, 0, 0, 0, 200)
-                };
-                timer.Tick += (s, ev) =>
-                {
-                    imageDesktopScreenshot.Source = null;
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    UpdateDesktopImage();
-                    timer.Stop();
-                };
-                timer.Start();
-            }
-
-
-            //
             // Fit window to content
             //
             else if (sender == mainMenuFitToContent)

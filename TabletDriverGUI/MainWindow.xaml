@@ -151,9 +151,6 @@
           </MenuItem>
           <MenuItem Name="mainMenuTabletView" Header="_Tablet View" Click="MainMenuClick" />
           <MenuItem Name="mainMenuTabletViewSettings" Header="Tablet View _Settings" Click="MainMenuClick" />
-          <MenuItem Name="mainMenuUpdateDesktopImage" Header="_Update desktop image" Click="MainMenuClick"
-                    ToolTip="Updates the screen map desktop image."
-                    />
           <MenuItem Name="mainMenuFitToContent" Header="_Fit window" Click="MainMenuClick"
                     ToolTip="Fits the GUI window to content of active tab."
                     />
