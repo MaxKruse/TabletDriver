@@ -420,87 +420,9 @@ namespace TabletDriverGUI
         {
             if (config == null) return;
             if (isLoadingSettings) return;
-            UpdateDesktopImage();
             UpdateScreenMapCanvas();
             UpdateTabletAreaCanvas();
             UpdateAreaInformation();
-        }
-
-
-        //
-        // Update screen map desktop image
-        //
-        void UpdateDesktopImage()
-        {
-            if (imageDesktopScreenshot != null && imageDesktopScreenshot.Source != null)
-            {
-                if (
-                    config.DesktopSize.Width == lastDesktopSize.Width
-                    &&
-                    config.DesktopSize.Height == lastDesktopSize.Height
-                )
-                {
-                    return;
-                }
-            }
-
-            try
-            {
-                int screenLeft = System.Windows.Forms.SystemInformation.VirtualScreen.Left;
-                int screenTop = System.Windows.Forms.SystemInformation.VirtualScreen.Top;
-                int screenWidth = System.Windows.Forms.SystemInformation.VirtualScreen.Width;
-                int screenHeight = System.Windows.Forms.SystemInformation.VirtualScreen.Height;
-
-
-                // Create desktop screenshot bitmap
-                System.Drawing.Bitmap bitmapDesktop = new System.Drawing.Bitmap(screenWidth, screenHeight);
-                System.Drawing.Graphics graphicsDesktop = System.Drawing.Graphics.FromImage(bitmapDesktop);
-                graphicsDesktop.CopyFromScreen(screenLeft, screenTop, 0, 0, bitmapDesktop.Size, System.Drawing.CopyPixelOperation.SourceCopy);
-
-
-                // Create downscaled bitmap
-                double scaleX = canvasScreenMap.ActualWidth / screenWidth;
-                double scaleY = canvasScreenMap.ActualHeight / screenHeight;
-                double scale = scaleX;
-                if (scaleX > scaleY)
-                    scale = scaleY;
-                System.Drawing.Bitmap bitmapDownscaled = new System.Drawing.Bitmap(
-                    (int)Math.Round(screenWidth * scale),
-                    (int)Math.Round(screenHeight * scale)
-                );
-                System.Drawing.Graphics graphicsDownscaled = System.Drawing.Graphics.FromImage(bitmapDownscaled);
-                graphicsDownscaled.DrawImage(bitmapDesktop, 0, 0, bitmapDownscaled.Width, bitmapDownscaled.Height);
-
-
-                // Create source from the bitmap
-                IntPtr handleBitmap = bitmapDownscaled.GetHbitmap();
-                BitmapSource bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                        handleBitmap,
-                        IntPtr.Zero,
-                        Int32Rect.Empty,
-                        BitmapSizeOptions.FromEmptyOptions()
-                    );
-                imageDesktopScreenshot.Source = bitmapSource;
-
-                // Release resources
-                NativeMethods.DeleteObject(handleBitmap);
-                graphicsDesktop.Dispose();
-                bitmapDesktop.Dispose();
-                graphicsDownscaled.Dispose();
-                bitmapDownscaled.Dispose();
-
-                // Run GC
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
-                // Update last desktop size
-                lastDesktopSize.Width = config.DesktopSize.Width;
-                lastDesktopSize.Height = config.DesktopSize.Height;
-
-            }
-            catch (Exception)
-            {
-            }
         }
 
 
