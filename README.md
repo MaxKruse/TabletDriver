@@ -1,5 +1,9 @@
 [![Actions Status](https://github.com/InfinityGhost/TabletDriver/workflows/Build/badge.svg)](https://github.com/InfinityGhost/TabletDriver/actions)
 
+# Fork for additional Development
+
+This repository is a fork from InfinityGhost, as he deprecated his fork for another OpenSource variant of a tablet driver.
+
 # TabletDriver
 
 This is a low latency graphics tablet driver that is meant to be used with rhythm game [osu!](https://osu.ppy.sh/home)
@@ -14,7 +18,7 @@ The GUI minimizes to system tray / notification area. You can reopen the GUI by 
 
 ## Download
 
-### https://github.com/InfinityGhost/TabletDriver/releases/download/v0.3.1a/TabletDriver.v0.3.1a.zip
+### https://github.com/MaxKruse/TabletDriver/releases/download/v0.3.1a/TabletDriver.v0.3.1a.zip
 
 #
 
