@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/InfinityGhost/TabletDriver/workflows/Build/badge.svg)](https://github.com/InfinityGhost/TabletDriver/actions)
+[![Actions Status](https://github.com/MaxKruse/TabletDriver/workflows/Build/badge.svg)](https://github.com/MaxKruse/TabletDriver/actions)
 
 # Fork for additional Development
 

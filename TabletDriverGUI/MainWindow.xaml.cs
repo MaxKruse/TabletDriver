@@ -24,7 +24,7 @@ namespace TabletDriverGUI
     {
 
         // Version
-        public string Version = "0.3.1 InfinityGhost";
+        public string Version = "0.3.1.0 MaxKruse";
 
         // Console stuff
         private List<string> commandHistory;
