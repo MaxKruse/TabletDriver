@@ -7,9 +7,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout
     - name: Setup MSBuild
-      uses: warrenbuckley/Setup-MSBuild@v1
+      uses: warrenbuckley/Setup-MSBuild
     - name: Build Release
       run: msbuild /t:Build /p:Configuration=Release /m
     - name: Copy all build files into build directory
