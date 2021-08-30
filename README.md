@@ -124,3 +124,4 @@ If you want to compile the code and don't want to install anything from the Tabl
 >- XP-Pen Star 03v2 configuration by [SBAPKat](https://github.com/SBAPKat)
 
 [**View all changelogs**](docs/changelog.md)
+
